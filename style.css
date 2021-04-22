@@ -1,0 +1,230 @@
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+  font-size: 16px;
+  font-family: 'Press Start 2P';
+  color:white;
+  background: black;
+  padding-bottom: 15px;
+  margin-bottom: 5px;
+}
+
+header {
+  display: none;
+  padding: 10px;
+}
+
+header p, section p {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 30px;
+}
+/* MAZE CSS */
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 30vh;
+  width: 630px;
+}
+
+.grid div{
+  height: 20px;
+  width: 20px;
+  /* border: rgb(47,47,47) 1px solid; */
+  border: black 1px solid;
+  
+}
+
+div.maze {
+  background: rgba(16, 16, 184, 0.3);
+  border: rgb(13, 13, 100, 0.5) 1px solid;
+  color:rgb(5,5,220, 0.5);
+  border-radius: 1px;
+}
+
+/* ENERGIZER CSS */
+
+.energizer {
+  background-image: radial-gradient(rgb(231,149,119) 40%, black 10%);
+  border: black 1px solid;
+  display: inline-block;
+}
+
+/* PACMAN CSS */
+
+.pacman, .pacmanglows {
+  background: url('https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/Original_PacMan2.png/170px-Original_PacMan2.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: black 1px solid;
+}
+
+.up {
+  transform: rotate(90deg);
+}
+
+.down {
+  transform: rotate(270deg);
+}
+
+.left {
+  transform: rotateY(0deg);
+}
+
+
+.right {
+  transform: rotate(180deg);
+}
+
+.test {
+  background: red;
+  color: red;
+}
+
+/* DOTS */
+
+.dots {
+  background-image: radial-gradient(rgb(231,149,119) 15%, black 10%);
+}
+
+div.space {
+  background: black;
+  border: black 1px solid;
+}
+
+.ready {
+  color: #e8db29;
+  text-transform: uppercase;
+  padding: 10px;
+  font-size: 24px;
+}
+
+.disappear {
+  color: black;
+}
+
+.no-display {
+  display: none;
+}
+
+/* GHOSTS */
+
+.blinky {
+  background: url('https://i.pinimg.com/originals/90/d2/e3/90d2e3ff2856032d36fcc7dc49334191.png');
+  background-size: 130%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: black 1px solid;
+}
+
+.speedy {
+  background: url('https://www.webwiz.xyz/Assign_02_webTech_pacman/pacman_assets/Pinky.png');
+  background-size: 110%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: black 1px solid;
+}
+
+.inky {
+  background: url('https://static.wikia.nocookie.net/wreckitralph/images/8/83/Inky8bit.png/revision/latest?cb=20130625170116');
+  background-size: 120%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: black 1px solid;
+}
+
+.clyde {
+  background: url('https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/2469743-orange.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: black 1px solid;
+}
+
+.glow-ghosts {
+  background: url('https://static.wikia.nocookie.net/pacman/images/5/56/Vulnerable-ghost.png/revision/latest?cb=20181106204925');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: black 1px solid;
+}
+
+div.door {
+  border-top: rgb(243, 87, 113) 1px solid;
+}
+
+div#lives {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+div.lives {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  background: url('https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/Original_PacMan2.png/170px-Original_PacMan2.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+button {
+  align-self: center;
+  display: flex;
+  font-size: 42px;
+  font-family: 'Press Start 2P';
+  border: red 2px solid;
+  border-radius: 10px;
+  background: orange;
+  color: yellow;
+  text-shadow: 5px 5px black;
+}
+
+
+
+a {
+  display: flex;
+  margin: 50px 20px 20px 20px;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P';
+  border: red 2px solid;
+  border-radius: 10px;
+  background: orange;
+  color: yellow;
+  text-shadow: 5px 5px rgb(73, 18, 73);
+  padding: 20px;
+  text-decoration: none;
+  font-size: 34px;
+}
+
+#quit {
+  font-size: 14px;
+  padding: 0px 10px;
+  text-shadow: 3px 2px yellow;
+  color: black;
+  margin: 0;
+}
+
+p .colored-text {
+  color: orange;
+  display: inline;
+}
+
+#pacman-logo {
+  align-self: center;
+  padding-left: 30px;
+}
