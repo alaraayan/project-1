@@ -18,7 +18,6 @@ let dotsRemaining = 295
 const wonButton = document.querySelector('#won-button')
 const lostButton = document.querySelector('#lost-button')
 const dotsRemainingDisplay = document.querySelector('#dots-remaining')
-
 for (let index = 0; index < width ** 2 + (width * 3); index++) {
   const div = document.createElement('div')
   grid.appendChild(div)
@@ -125,6 +124,60 @@ function gameStartScreen() {
 
 //* GHOSTS
 
+//* GHOSTS RESET
+
+function speedyReset() {
+  
+  if ((cells[speedy].classList.contains('pacmanglows'))) {
+    cells[speedy].classList.remove('speedy')
+    cells[speedy].classList.remove('ghost')
+    cells[speedy].classList.remove('glow-ghosts')
+    cells[speedy].classList.remove('glow-speedy')
+    speedy = 433
+    cells[speedy].classList.add('speedy')
+    cells[speedy].classList.add('ghost')
+  }
+}
+
+function inkyReset() {
+  
+  if ((cells[inky].classList.contains('pacmanglows'))) {
+    cells[inky].classList.remove('inky')
+    cells[inky].classList.remove('ghost')
+    cells[inky].classList.remove('glow-ghosts')
+    cells[inky].classList.remove('glow-inky')
+    inky = 434
+    cells[inky].classList.add('inky')
+    cells[inky].classList.add('ghost')
+  }
+}
+
+function blinkyReset() {
+  
+  if ((cells[blinky].classList.contains('pacmanglows'))) {
+    cells[blinky].classList.remove('blinky')
+    cells[blinky].classList.remove('ghost')
+    cells[blinky].classList.remove('glow-ghosts')
+    cells[blinky].classList.remove('glow-blinky')
+    blinky = 432
+    cells[blinky].classList.add('blinky')
+    cells[blinky].classList.add('ghost')
+  }
+}
+
+function clydeReset() {
+  
+  if ((cells[clyde].classList.contains('pacmanglows'))) {
+    cells[clyde].classList.remove('clyde')
+    cells[clyde].classList.remove('ghost')
+    cells[clyde].classList.remove('glow-ghosts')
+    cells[clyde].classList.remove('glow-clyde')
+    clyde = 435
+    cells[clyde].classList.add('clyde')
+    cells[clyde].classList.add('ghost')
+  }
+}
+
 //? GHOSTS LEAVE THE DEN
 
 function ghostsMove() {
@@ -222,19 +275,17 @@ function pathCheck(ghostName, path) {
 
 
 function speedyMoves() {
-  // creates a random path
+  
   let ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
   setInterval(() => {
-    // checks if the path is ok to move
+    
     pathCheck(speedy, ghostRandomPath)
-    // while it's not ok to move, create new path and check if that one's ok
+    
     while (!isClear) {
       ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
       pathCheck(speedy, ghostRandomPath)
     }
-    // while it's ok to move, move speedy and check if it's still ok every half seconds
-    // if it's not ok it should create a newGhostPath right?
-    // should the setInterval be above speedyMoves()?
+    
     if (isClear) {
       pathCheck(speedy, ghostRandomPath)
       cells[speedy].classList.remove('speedy')
@@ -361,7 +412,6 @@ function clydeMoves() {
         cells[clyde].classList.remove('ghost')
         if ((cells[clyde].classList.contains('pacmanglows'))) {
           score += 200
-          
         }
       }  
     } 
@@ -383,6 +433,10 @@ function pacManEats() {
     score += 50
     const glowInterval = setInterval(() => {
       glowing = true
+      blinkyReset()
+      speedyReset()
+      clydeReset()
+      inkyReset()
       setTimeout(() => {
         cells[blinky].classList.remove('glow-ghosts')
         cells[blinky].classList.remove('glow-blinky')
@@ -484,7 +538,7 @@ function pacManMoves () {
       cells[pacMan].classList.remove('pacman')
       cells[pacMan].classList.add('pacmanglows')
       if ( key === 'ArrowDown') {
-        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down')
+        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down', 'pacman')
         pacMan += width 
         if ((cells[pacMan].classList.contains('maze')) || (cells[pacMan].classList.contains('door'))) {
           pacMan -= width
@@ -493,32 +547,11 @@ function pacManMoves () {
           score += 200
           updateValues(score)
         }
-        if ((cells[pacMan].classList.contains('glow-blinky'))) {
-          cells[blinky].classList.remove('glow-ghosts')
-          cells[blinky].classList.remove('glow-blinky')
-          blinky = 432
-          blinkyMoves()  
-        } else if ((cells[pacMan].classList.contains('glow-inky'))) {
-          cells[inky].classList.remove('glow-ghosts')
-          cells[inky].classList.remove('glow-inky')
-          inky = 434
-          inkyMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-clyde'))) {
-          cells[clyde].classList.remove('glow-ghosts')
-          cells[clyde].classList.remove('glow-clyde')
-          clyde = 435  
-          clydeMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-speedy'))) {
-          cells[speedy].classList.remove('glow-ghosts')
-          cells[speedy].classList.remove('glow-speedy')
-          speedy = 433          
-          speedyMoves() 
-        }
         cells[pacMan].classList.add('down')
         cells[pacMan].classList.add('pacmanglows')
         pacManEats()
       } else if (key === 'ArrowUp') {
-        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down')
+        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down', 'pacman')
         pacMan -= width 
         if ((cells[pacMan].classList.contains('maze'))) {
           pacMan += width
@@ -527,63 +560,21 @@ function pacManMoves () {
           score += 200
           updateValues(score)
         }
-        if ((cells[pacMan].classList.contains('glow-blinky'))) {
-          cells[blinky].classList.remove('glow-ghosts')
-          cells[blinky].classList.remove('glow-blinky')
-          blinky = 432
-          blinkyMoves()  
-        } else if ((cells[pacMan].classList.contains('glow-inky'))) {
-          cells[inky].classList.remove('glow-ghosts')
-          cells[inky].classList.remove('glow-inky')
-          inky = 434
-          inkyMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-clyde'))) {
-          cells[clyde].classList.remove('glow-ghosts')
-          cells[clyde].classList.remove('glow-clyde')
-          clyde = 435  
-          clydeMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-speedy'))) {
-          cells[speedy].classList.remove('glow-ghosts')
-          cells[speedy].classList.remove('glow-speedy')
-          speedy = 433          
-          speedyMoves() 
-        }
         cells[pacMan].classList.add('up')
         cells[pacMan].classList.add('pacmanglows')
         pacManEats()
       } else if (key === 'ArrowLeft' && pacMan === 392) {
-        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down')
+        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down', 'pacman')
         pacMan = 419
         if ((cells[pacMan].classList.contains('glow-ghosts'))) {
           score += 200
           updateValues(score)
         }
-        if ((cells[pacMan].classList.contains('glow-blinky'))) {
-          cells[blinky].classList.remove('glow-ghosts')
-          cells[blinky].classList.remove('glow-blinky')
-          blinky = 432
-          blinkyMoves()  
-        } else if ((cells[pacMan].classList.contains('glow-inky'))) {
-          cells[inky].classList.remove('glow-ghosts')
-          cells[inky].classList.remove('glow-inky')
-          inky = 434
-          inkyMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-clyde'))) {
-          cells[clyde].classList.remove('glow-ghosts')
-          cells[clyde].classList.remove('glow-clyde')
-          clyde = 435  
-          clydeMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-speedy'))) {
-          cells[speedy].classList.remove('glow-ghosts')
-          cells[speedy].classList.remove('glow-speedy')
-          speedy = 433          
-          speedyMoves() 
-        }
         cells[pacMan].classList.add('left')
         cells[pacMan].classList.add('pacmanglows')
         pacManEats()
       } else if (key === 'ArrowLeft')  {
-        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down')
+        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down', 'pacman')
         pacMan -= 1
         if ((cells[pacMan].classList.contains('maze'))) {
           pacMan += 1
@@ -592,63 +583,21 @@ function pacManMoves () {
           score += 200
           updateValues(score)
         }
-        if ((cells[pacMan].classList.contains('glow-blinky'))) {
-          cells[blinky].classList.remove('glow-ghosts')
-          cells[blinky].classList.remove('glow-blinky')
-          blinky = 432
-          blinkyMoves()  
-        } else if ((cells[pacMan].classList.contains('glow-inky'))) {
-          cells[inky].classList.remove('glow-ghosts')
-          cells[inky].classList.remove('glow-inky')
-          inky = 434
-          inkyMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-clyde'))) {
-          cells[clyde].classList.remove('glow-ghosts')
-          cells[clyde].classList.remove('glow-clyde')
-          clyde = 435  
-          clydeMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-speedy'))) {
-          cells[speedy].classList.remove('glow-ghosts')
-          cells[speedy].classList.remove('glow-speedy')
-          speedy = 433          
-          speedyMoves() 
-        }
         cells[pacMan].classList.add('left')
         cells[pacMan].classList.add('pacmanglows')
         pacManEats()
       }  else if (key === 'ArrowRight' && pacMan === 419) {
-        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down')
+        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down', 'pacman')
         pacMan = 392
         if ((cells[pacMan].classList.contains('glow-ghosts'))) {
           score += 200
           updateValues(score)
         }
-        if ((cells[pacMan].classList.contains('glow-blinky'))) {
-          cells[blinky].classList.remove('glow-ghosts')
-          cells[blinky].classList.remove('glow-blinky')
-          blinky = 432
-          blinkyMoves()  
-        } else if ((cells[pacMan].classList.contains('glow-inky'))) {
-          cells[inky].classList.remove('glow-ghosts')
-          cells[inky].classList.remove('glow-inky')
-          inky = 434
-          inkyMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-clyde'))) {
-          cells[clyde].classList.remove('glow-ghosts')
-          cells[clyde].classList.remove('glow-clyde')
-          clyde = 435  
-          clydeMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-speedy'))) {
-          cells[speedy].classList.remove('glow-ghosts')
-          cells[speedy].classList.remove('glow-speedy')
-          speedy = 433          
-          speedyMoves() 
-        }
         cells[pacMan].classList.add('right')
         cells[pacMan].classList.add('pacmanglows')
         pacManEats()
       } else if (key === 'ArrowRight') {
-        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down')
+        cells[pacMan].classList.remove('pacmanglows', 'up', 'left', 'right', 'down', 'pacman')
         pacMan += 1
         if ((cells[pacMan].classList.contains('maze'))) {
           pacMan -= 1
@@ -656,27 +605,6 @@ function pacManMoves () {
         if ((cells[pacMan].classList.contains('glow-ghosts'))) {
           score += 200
           updateValues(score)
-        }
-        if ((cells[pacMan].classList.contains('glow-blinky'))) {
-          cells[blinky].classList.remove('glow-ghosts')
-          cells[blinky].classList.remove('glow-blinky')
-          blinky = 432
-          blinkyMoves()  
-        } else if ((cells[pacMan].classList.contains('glow-inky'))) {
-          cells[inky].classList.remove('glow-ghosts')
-          cells[inky].classList.remove('glow-inky')
-          inky = 434
-          inkyMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-clyde'))) {
-          cells[clyde].classList.remove('glow-ghosts')
-          cells[clyde].classList.remove('glow-clyde')
-          clyde = 435  
-          clydeMoves() 
-        } else if ((cells[pacMan].classList.contains('glow-speedy'))) {
-          cells[speedy].classList.remove('glow-ghosts')
-          cells[speedy].classList.remove('glow-speedy')
-          speedy = 433          
-          speedyMoves() 
         }
         cells[pacMan].classList.add('right')
         cells[pacMan].classList.add('pacmanglows')
@@ -692,13 +620,13 @@ function pacManMoves () {
 
 
 
-//* UPDATE SCORE AND ALL TIME HIGH
+//* UPDATE SCORE 
 function updateValues(score){
   currentScore.innerHTML = score
   return currentScore
 }
 
-//* DOTS REMAINING
+//* UPDATE DOTS REMAINING
 
 function updateDotsRemaining(dotsRemaining) {
   dotsRemainingDisplay.innerHTML = dotsRemaining
