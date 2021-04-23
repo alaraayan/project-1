@@ -314,7 +314,7 @@ function speedyMoves() {
       }
     }
     
-  }, 200) 
+  }, 150) 
   
 }
 
@@ -353,7 +353,7 @@ function inkyMoves() {
         cells[inky].classList.remove('ghost')
       }
     } 
-  }, 200)   
+  }, 150)   
   
 }
 
@@ -395,7 +395,7 @@ function blinkyMoves() {
         cells[blinky].classList.remove('ghost')
       }
     } 
-  }, 200) 
+  }, 150) 
 }
 
 function clydeMoves() {
@@ -435,7 +435,7 @@ function clydeMoves() {
         cells[clyde].classList.remove('ghost')
       }  
     } 
-  }, 200) 
+  }, 150) 
   
 }
 
