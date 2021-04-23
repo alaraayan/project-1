@@ -21,6 +21,7 @@ const dotsRemainingDisplay = document.querySelector('#dots-remaining')
 for (let index = 0; index < width ** 2 + (width * 3); index++) {
   const div = document.createElement('div')
   grid.appendChild(div)
+  // div.innerHTML = index
   cells.push(div)
   div.classList.add('maze')
 }
@@ -280,11 +281,17 @@ function speedyMoves() {
   setInterval(() => {
     
     pathCheck(speedy, ghostRandomPath)
-    
-    while (!isClear) {
-      ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
-      pathCheck(speedy, ghostRandomPath)
+    if (speedy === 433 || speedy === 405 || speedy === 377 || speedy === 349) {
+      ghostRandomPath = -width
+      isClear = true
+      
+    } else {
+      while (!isClear) {
+        ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
+        pathCheck(speedy, ghostRandomPath)
+      }
     }
+    
     
     if (isClear) {
       pathCheck(speedy, ghostRandomPath)
@@ -307,7 +314,7 @@ function speedyMoves() {
       }
     }
     
-  }, 150) 
+  }, 200) 
   
 }
 
@@ -316,10 +323,16 @@ function inkyMoves() {
   setInterval(() => {
     
     pathCheck(inky, ghostRandomPath)
-    while (!isClear) {
-      ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
-      pathCheck(inky, ghostRandomPath)
+    if (inky === 434 || inky === 406 || inky === 378 || inky === 350) {
+      ghostRandomPath = -width
+      isClear = true
+    } else {
+      while (!isClear) {
+        ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
+        pathCheck(inky, ghostRandomPath)
+      }
     }
+    
     if (isClear) {
       pathCheck(inky, ghostRandomPath)
       cells[inky].classList.remove('inky')
@@ -340,7 +353,7 @@ function inkyMoves() {
         cells[inky].classList.remove('ghost')
       }
     } 
-  }, 150)   
+  }, 200)   
   
 }
 
@@ -348,10 +361,20 @@ function blinkyMoves() {
   let ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
   setInterval(() => {
     pathCheck(blinky, ghostRandomPath)
-    while (!isClear) {
-      ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
-      pathCheck(blinky, ghostRandomPath)
+    if (blinky === 432) {
+      ghostRandomPath = +1
+      isClear = true
+    } else if (blinky === 433 || blinky === 405 || blinky === 377 || blinky === 349) {
+      ghostRandomPath = -width
+      isClear = true
+      console.log('force blinky up')
+    } else {
+      while (!isClear) {
+        ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
+        pathCheck(blinky, ghostRandomPath)
+      }
     }
+    
     if (isClear) {
       pathCheck(blinky, ghostRandomPath)
       cells[blinky].classList.remove('blinky')
@@ -372,17 +395,26 @@ function blinkyMoves() {
         cells[blinky].classList.remove('ghost')
       }
     } 
-  }, 150) 
+  }, 200) 
 }
 
 function clydeMoves() {
   let ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
   setInterval(() => {
     pathCheck(clyde, ghostRandomPath)
-    while (!isClear) {
-      ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
-      pathCheck(clyde, ghostRandomPath)
+    if (clyde === 435) {
+      ghostRandomPath = -1
+      isClear = true
+    } else if (clyde === 434 || clyde === 406 || clyde === 378 || clyde === 350) {
+      ghostRandomPath = -width
+      isClear = true
+    } else {
+      while (!isClear) {
+        ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
+        pathCheck(clyde, ghostRandomPath)
+      }
     }
+    
     if (isClear) {
       pathCheck(clyde, ghostRandomPath)
       cells[clyde].classList.remove('clyde')
@@ -403,7 +435,7 @@ function clydeMoves() {
         cells[clyde].classList.remove('ghost')
       }  
     } 
-  }, 150) 
+  }, 200) 
   
 }
 
@@ -586,7 +618,7 @@ function pacManEats() {
       speedyReset()
       clydeReset()
       inkyReset()
-    })
+    }, 50)
     setTimeout(() => {
       cells[blinky].classList.remove('glow-ghosts')
       cells[blinky].classList.remove('glow-blinky')
