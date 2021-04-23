@@ -304,9 +304,6 @@ function speedyMoves() {
         cells[speedy].classList.add('glow-speedy')
         cells[speedy].classList.remove('speedy')
         cells[speedy].classList.remove('ghost')
-        if ((cells[speedy].classList.contains('pacmanglows'))) {
-          score += 200
-        }
       }
     }
     
@@ -341,9 +338,6 @@ function inkyMoves() {
         cells[inky].classList.add('glow-inky')
         cells[inky].classList.remove('inky')
         cells[inky].classList.remove('ghost')
-        if ((cells[inky].classList.contains('pacmanglows'))) {
-          score += 200
-        }
       }
     } 
   }, 150)   
@@ -376,9 +370,6 @@ function blinkyMoves() {
         cells[blinky].classList.add('glow-blinky')
         cells[blinky].classList.remove('blinky')
         cells[blinky].classList.remove('ghost')
-        if ((cells[blinky].classList.contains('pacmanglows'))) {
-          score += 200
-        }
       }
     } 
   }, 150) 
@@ -410,9 +401,6 @@ function clydeMoves() {
         cells[clyde].classList.add('glow-clyde')
         cells[clyde].classList.remove('clyde')
         cells[clyde].classList.remove('ghost')
-        if ((cells[clyde].classList.contains('pacmanglows'))) {
-          score += 200
-        }
       }  
     } 
   }, 150) 
@@ -422,42 +410,7 @@ function clydeMoves() {
 
 //* PACMAN MOVES
 
-function pacManEats() {
-  if (cells[pacMan].classList.contains('dots')) {
-    cells[pacMan].classList.remove('dots')
-    score += 10
-    dotsRemaining -= 1
-    updateDotsRemaining(dotsRemaining)
-  } else if (cells[pacMan].classList.contains('energizer')) {
-    cells[pacMan].classList.remove('energizer')
-    score += 50
-    const glowInterval = setInterval(() => {
-      glowing = true
-      blinkyReset()
-      speedyReset()
-      clydeReset()
-      inkyReset()
-      setTimeout(() => {
-        cells[blinky].classList.remove('glow-ghosts')
-        cells[blinky].classList.remove('glow-blinky')
-        cells[speedy].classList.remove('glow-ghosts')
-        cells[speedy].classList.remove('glow-speedy')
-        cells[inky].classList.remove('glow-inky')
-        cells[inky].classList.remove('glow-ghosts')
-        cells[clyde].classList.remove('glow-ghosts')
-        cells[clyde].classList.remove('glow-clyde')
-        cells[pacMan].classList.remove('pacmanglows')
-        cells[pacMan].classList.add('pacman')
-        glowing = false
-        clearInterval(glowInterval)
-      }, 9000)
-    })
-  }
-  if (dotsRemaining === 0){
-    gameWon()
-  }
-  updateValues(score)
-}
+
 
 function pacManMoves () {
   document.addEventListener('keydown', (event) => {
@@ -616,7 +569,44 @@ function pacManMoves () {
   }) 
 
 } 
-
+function pacManEats() {
+  if (cells[pacMan].classList.contains('dots')) {
+    cells[pacMan].classList.remove('dots')
+    score += 10
+    dotsRemaining -= 1
+    updateDotsRemaining(dotsRemaining)
+  } else if (cells[pacMan].classList.contains('energizer')) {
+    cells[pacMan].classList.remove('energizer')
+    score += 50
+    const glowInterval = setInterval(() => {
+      glowing = true
+      cells[pacMan].classList.remove('pacman')
+      cells[pacMan].classList.add('pacmanglows')
+      blinkyReset()
+      speedyReset()
+      clydeReset()
+      inkyReset()
+    })
+    setTimeout(() => {
+      cells[blinky].classList.remove('glow-ghosts')
+      cells[blinky].classList.remove('glow-blinky')
+      cells[speedy].classList.remove('glow-ghosts')
+      cells[speedy].classList.remove('glow-speedy')
+      cells[inky].classList.remove('glow-ghosts')
+      cells[inky].classList.remove('glow-inky')
+      cells[clyde].classList.remove('glow-ghosts')
+      cells[clyde].classList.remove('glow-clyde')
+      cells[pacMan].classList.remove('pacmanglows')
+      cells[pacMan].classList.add('pacman')
+      glowing = false
+      clearInterval(glowInterval)
+    }, 9000)
+  }
+  if (dotsRemaining === 0){
+    gameWon()
+  }
+  updateValues(score)
+}
 
 
 
@@ -681,54 +671,3 @@ function gameReset(){
 
 //* GLOWING
 
-// if (glowing) {
-//   glowState()
-// }
-
-// function glowState() {
-//   if ((cells[blinky].classList.contains('pacmanglows'))) {
-//     score += 200
-//     console.log('YOU DID IT')
-//   } else if (pacMan === blinky) {
-//     cells[blinky].classList.remove('glow-ghosts')
-//     blinky === 432
-
-//     cells[blinky].classList.add('blinky')  
-//     cells[blinky].classList.add('ghost')    
-//     score += 200
-//     updateValues(score)
-//   } else if ((cells[clyde].classList.contains('pacman'))) {
-//     livesRemaining += 1
-//     updateLives(livesRemaining)
-//   } else if (pacMan === clyde) {
-//     cells[clyde].classList.remove('glow-ghosts')
-    
-//     clyde === 435
-//     cells[clyde].classList.add('clyde')  
-//     cells[clyde].classList.add('ghost')  
-//     score += 200
-//     updateValues(score)
-//   } else if ((cells[inky].classList.contains('pacman'))) {
-//     livesRemaining += 1
-//     updateLives(livesRemaining)
-//   } else if (pacMan === inky) {
-//     cells[inky].classList.remove('glow-ghosts')
-    
-//     inky === 434
-//     cells[inky].classList.add('inky')   
-//     cells[inky].classList.add('ghost')   
-//     score += 200
-//     updateValues(score)
-//   } else if ((cells[speedy].classList.contains('pacman'))) {
-//     livesRemaining += 1
-//     updateLives(livesRemaining)
-//   } else if (pacMan === speedy) {
-//     cells[speedy].classList.remove('glow-ghosts')
-    
-//     speedy === 433
-//     cells[speedy].classList.add('speedy')  
-//     cells[speedy].classList.add('ghost')  
-//     score += 200
-//     updateValues(score)
-//   }
-// }
