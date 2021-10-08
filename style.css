@@ -121,7 +121,7 @@ div.space {
 /* GHOSTS */
 
 .blinky {
-  background: url('https://i.pinimg.com/originals/90/d2/e3/90d2e3ff2856032d36fcc7dc49334191.png');
+  background: url('./assets/pacman.png');
   background-size: 130%;
   background-repeat: no-repeat;
   background-position: center;
@@ -129,7 +129,7 @@ div.space {
 }
 
 .speedy {
-  background: url('https://www.webwiz.xyz/Assign_02_webTech_pacman/pacman_assets/Pinky.png');
+  background: url('./assets/speedy.png');
   background-size: 110%;
   background-repeat: no-repeat;
   background-position: center;
@@ -137,7 +137,7 @@ div.space {
 }
 
 .inky {
-  background: url('https://t5.rbxcdn.com/00065af65995f03020021ea2530e7eba');
+  background: url('./assets/inky.png');
   background-size: 120%;
   background-repeat: no-repeat;
   background-position: center;
@@ -145,7 +145,7 @@ div.space {
 }
 
 .clyde {
-  background: url('https://giantbomb1.cbsistatic.com/uploads/scale_small/8/87790/2469743-orange.png');
+  background: url('./assets/clyde.png');
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -153,7 +153,7 @@ div.space {
 }
 
 .glow-ghosts {
-  background: url('https://i.pinimg.com/474x/e8/84/ab/e884ab951085a6105c6fc91714b8933b.jpg');
+  background: url('./assets/glow.jpeg');
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
