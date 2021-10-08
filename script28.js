@@ -1,8 +1,10 @@
 
-// * CREATING THE GRID
+// * Setting up the grid
 const grid = document.querySelector('.grid')
 const width = 28
 const cells = []
+
+//* Setting up the game
 let pacMan = 657
 let blinky = 432
 let speedy = 433
@@ -21,12 +23,11 @@ const dotsRemainingDisplay = document.querySelector('#dots-remaining')
 for (let index = 0; index < width ** 2 + (width * 3); index++) {
   const div = document.createElement('div')
   grid.appendChild(div)
-  // div.innerHTML = index
   cells.push(div)
   div.classList.add('maze')
 }
 
-// ! THE MAZE NEED OPTIMIZATION NOT DRY CODE
+// * Creating the maze
 
 const canMove = [29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 57, 62, 68, 71, 77, 82, 85, 90, 96, 99, 105, 110, 113, 118, 124, 127, 133, 138, 141,142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 169, 174, 177, 186, 189, 194, 197, 202, 205, 214, 217, 222, 225, 226, 227, 228, 229, 230, 233, 234, 235, 236, 239, 240, 241, 242, 245, 246, 247, 248, 249, 250, 258, 264, 267, 273, 286, 292, 295, 301, 314, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 329, 342, 345, 354, 357, 370, 373, 382, 385, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 426, 429, 438, 441, 454, 457, 466, 469, 482, 485, 486, 487, 488, 489, 490, 491, 492, 493, 494, 497, 510, 513, 522, 525, 538, 541, 550, 553, 561, 562, 563, 564, 565, 566, 567, 568, 569, 570, 571, 572, 575, 576, 577, 578, 579, 580, 581, 582, 583, 584, 585, 586, 589, 594, 600, 603, 609, 614, 617, 622, 628, 631, 637, 642, 645, 646, 647, 650, 651, 652, 653, 654, 655, 656, 657, 658, 659, 660, 661, 662, 663, 664, 665, 668, 669, 670, 675, 678, 681, 690, 693, 696, 703, 706, 709, 718, 721, 724, 729, 730, 731, 732, 733, 734, 737, 738, 739, 740, 743, 744, 745, 746, 749, 750, 751, 752, 753, 754, 757, 768, 771, 782, 785, 796, 799, 810, 813, 814, 815, 816, 827, 817,818, 819, 820, 821, 822, 823, 824, 825, 826, 827, 828, 829, 830, 831, 832, 833, 834, 835, 836, 837, 838]
 
@@ -58,7 +59,6 @@ ghostsDenDoor.forEach((index) => {
   return
 })
 
-// ! * ENERGIZERS NEED OPTIMIZATION NOT DRY CODE
 
 cells[(width * 3) + 1].classList.add('energizer')
 cells[(width * 3) + 1].classList.remove('dots')
@@ -72,17 +72,13 @@ cells[(width * 23) + width - 2].classList.remove('dots')
 //* SETTING THE GAME
 
 cells[pacMan].classList.add('pacman')
-cells[blinky].classList.add('blinky')
-cells[blinky].classList.add('ghost')
+cells[blinky].classList.add('blinky', 'ghost')
 cells[blinky].classList.remove('dots')
-cells[inky].classList.add('inky')
-cells[inky].classList.add('ghost')
+cells[inky].classList.add('inky', 'ghost')
 cells[inky].classList.remove('dots')
-cells[speedy].classList.add('speedy')
-cells[speedy].classList.add('ghost')
+cells[speedy].classList.add('speedy', 'ghost')
 cells[speedy].classList.remove('dots')
-cells[clyde].classList.add('clyde')
-cells[clyde].classList.add('ghost')
+cells[clyde].classList.add('clyde', 'ghost')
 cells[clyde].classList.remove('dots')
 cells[pacMan].classList.remove('dots')
 let score = 0
@@ -90,7 +86,7 @@ let score = 0
 
 //* GAMEPLAY
 
-gamePlay()
+
 function gamePlay() {
   wonButton.style.display = 'none'
   lostButton.style.display = 'none'
@@ -103,6 +99,8 @@ function gamePlay() {
   }, 1600)
 
 }
+
+gamePlay()
 
 //* GAME START
 
@@ -179,7 +177,7 @@ function clydeReset() {
   }
 }
 
-//? GHOSTS LEAVE THE DEN
+//* GHOSTS LEAVE THE DEN CAREOGRAPHY
 
 function ghostsMove() {
   
@@ -256,7 +254,7 @@ function ghostsMove() {
 }
 
 
-//? GHOSTS FIND A PATH
+//* GHOSTS FIND A PATH
 
 const ghostsNextMove = [+1, -1, +width, -width]
 let isClear = false
@@ -272,7 +270,7 @@ function pathCheck(ghostName, path) {
   }
 }
 
-//? GHOSTS MOVE
+//* GHOSTS MOVE ALONG THE PATH
 
 
 function speedyMoves() {
@@ -367,7 +365,6 @@ function blinkyMoves() {
     } else if (blinky === 433 || blinky === 405 || blinky === 377 || blinky === 349) {
       ghostRandomPath = -width
       isClear = true
-      console.log('force blinky up')
     } else {
       while (!isClear) {
         ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
@@ -648,7 +645,7 @@ function updateValues(score){
   return currentScore
 }
 
-//* UPDATE DOTS REMAINING
+//* UPDATE REMAINING DOTS
 
 function updateDotsRemaining(dotsRemaining) {
   dotsRemainingDisplay.innerHTML = dotsRemaining
@@ -656,7 +653,7 @@ function updateDotsRemaining(dotsRemaining) {
 }
 
 
-//* LOSING LIVES 
+//* LOSE A LIFE
 
 //Display remaining lives
 for (let index = 0; index < 3; index++) {
@@ -680,7 +677,7 @@ function updateLives(livesRemaining){
   }
 }
 
-//* LOSING GAME
+//* LOSING THE GAME
 
 function gameLost() {
   lostButton.style.display = 'flex'
@@ -701,5 +698,4 @@ function gameReset(){
   }, 3000)
 }
 
-//* GLOWING
 
