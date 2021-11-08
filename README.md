@@ -20,7 +20,7 @@ Deployed version of my game: - https://alaraayan.github.io/sei-project-1/
 </p>
 
 ## Overview 
-Tasked with building a grid-based game using Vanilla JavaScript. As a huge fan of the classic arcade game, I chose Pac-Man and tried to stay true to the original game as possible. The user controls the Pac-Man to collect all the dots while being pursued by ghosts who move around the maze. If caught, Pac-Man will lose one of his three lives; while eating a Power-Up will make him momentarily invincible.
+Tasked with building a grid-based game using Vanilla JavaScript. As a huge fan of the classic arcade game, I chose Pac-Man and tried to stay as true to the original game as possible. The user controls the Pac-Man to collect all the dots while being pursued by ghosts who move around the maze. If caught, Pac-Man will lose one of his three lives; while eating a Power-Up will make him momentarily invincible.
 
 
 ## Brief
