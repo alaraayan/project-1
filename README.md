@@ -1,9 +1,9 @@
 # Project-1: Pac-Man 
 
-Pac-Man | Vanilla JavaScript, HTML & CSS | 1-week | Solo project
+#### General Assembly SEI Project-1 | Pac-Man | Vanilla JavaScript, HTML & CSS | 1-week | Solo project
 
-Deployed version of my game: - https://alaraayan.github.io/sei-project-1/ 
 
+Deployed version of my game can be found here: - https://alaraayan.github.io/sei-project-1/ 
 
 
 <p>
