@@ -6,18 +6,7 @@
 Deployed version of my game can be found here: - https://alaraayan.github.io/sei-project-1/ 
 
 
-<p>
-<img src="images/start-screen.png" alt="start screen"/>
-</p>
-<p>
-<img src="images/grid.png" alt="the grid"/>
-</p>
-<p>
-<img src="images/winner-page.png" alt="game won or lost announcement"/>
-</p>
-<p>
-<img src="images/glow-mode.png" alt="glow mode"/>
-</p>
+
 
 ## Overview 
 Tasked with building a grid-based game using Vanilla JavaScript. As a huge fan of the classic arcade game, I chose Pac-Man and tried to stay as true to the original game as possible. The user controls the Pac-Man to collect all the dots while being pursued by ghosts who move around the maze. If caught, Pac-Man will lose one of his three lives; while eating a Power-Up will make him momentarily invincible.
@@ -46,14 +35,141 @@ The brief given was to:
 - VScode
 - ESlint
 
+## Process
 
- 
+<p>The first stages included setting up the grid and have the Pac-Man move along the maze. I didn't want to add in the ghosts until I felt comfortable with how Pac-Man was moving accross the board.</p>
+
+<p>Because of the unique shape of the Pac-Man grid I created arrays which specified various parts such as the tunnels and the den for the ghosts. 
+
+Then I added in the Pac-Man and tested that it could move freely accross the grid, moving through the tunnel and appearing on the other side while not being able to enter the home of the ghosts. 
+
+To finish the Pac-Man section of the game I added in the dots Pac-Man would be eating to win the game. 
+
+After all the functionality for Pac-Man was tested, it was time to add the ghosts. I started with a single ghost (my favourite Clyde <img src="./assets/clyde.png" alt="clyde" style="width:15px;height:15px"/>) and have him move around randomly. The biggest challenge I had in the beginning was figuring out the random movement of the ghosts which was not entirely random. 
+
+When Clyde started moving along his chosen path and randomly creating another one, I added his long awaited meeting with Pac-Man. I had to create a collision functionality for both Pac-Man and Clyde. This was fairly simple with added if statements inside their movement functions.
+</p>
+
+###### Pac-Man Runs Into Clyde
+
+```
+if ((cells[pacMan].classList.contains('ghost'))) {
+  livesRemaining -= 1
+}
+```
+
+###### Clyde Runs Into Pac-Man
+```
+if ((cells[inky].classList.contains('pacman'))) {
+  livesRemaining -= 1
+  updateLives(livesRemaining)
+}
+```
+
+The only task I had remaining before adding the other ghosts, was the Glow Mode <img src="./assets/glow.jpeg" alt="glow mode" style="width:15px;height:15px"/>. I originally had this as a separate function but decided to refactor into the existing movement functionalities for the ghosts and the Pac-Man. 
+
+After adding the remaining ghosts, my MVP was finished. I then moved on to adding a starter screen, careographing the ghosts' starting move out of their home and adding the game won / lost functionalities.
+
+## Screenshots
+<p>
+Start Screen
+<img src="./assets/screenshots/start-screen.png" alt="start screen"/>
+</p>
+<p>
+Game Screen
+<img src="./assets/screenshots/grid.png" alt="the grid"/>
+</p>
+<p>
+Result Pop-up
+<img src="./assets/screenshots/winner-page.png" alt="game won or lost announcement"/>
+</p>
+<p>
+Glow Mode
+<img src="./assets/screenshots/glow-mode.png" alt="glow mode"/>
+</p>
+
+## Challenges
+<p>My main challenge was not the Pac-Man but the ghosts. The ghosts move randomly but they stay on a path, and only once that path is no longer valid they choose a new random one. I achieved this in the end with generating a random path for the ghost and then checking if the path is valid or not. While the path is not clear for the ghost to move, it keeps creating a random path and checking it. 
+
+
+###### Logic for finding a clear path
+```
+const ghostsNextMove = [+1, -1, +width, -width]
+let isClear = false
+
+function pathCheck(ghostName, path) {
+  if (cells[ghostName += path].classList.contains('maze') || 
+  (cells[ghostName += path].classList.contains('home')) { 
+    isClear = false
+  } else {
+    isClear = true
+  }
+}
+```
+
+###### Clyde checks if his path is clear to start moving
+```
+function clydeMoves() {
+  let ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
+  setInterval(() => {
+    pathCheck(clyde, ghostRandomPath)
+    while (!isClear) {
+      ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
+      pathCheck(clyde, ghostRandomPath)
+    }
+  }, 150) 
+  
+}
+```
+###### After getting started on his path, Clyde still checks his path ahead before each move
+```
+if (isClear) {
+      pathCheck(clyde, ghostRandomPath)
+      cells[clyde].classList.remove('clyde')
+      cells[clyde].classList.remove('ghost')
+      cells[clyde].classList.remove('glow-ghosts')
+      cells[clyde].classList.remove('glow-clyde')
+      clyde += ghostRandomPath
+}
+```
+
+## Wins
+While getting the ghosts move was both my biggest challenge and my biggest win, I am also proud of my grid. The grid for Pac-Man is a classic and because I was trying to be true to the arcade game as much as possible, getting the grid right was very important to me. In the end I had all the functionalities a regular Pac-Man grid had, with tunnels the Pac-Man can use to quickly move accross the board and not being able to enter the ghosts home. 
+
+Another win was the entire careography of the ghosts leaving their home and staying true to this pattern when they are back in there once they've been eaten by Pac-Man during Glow Mode. Each ghost leaves the home following a specific path and they do so one at a time. Once the second ghost starts the careography the first ghost is set with finding a path to get moving. I achieved this with nesting `setTimeout()`, allowing Clyde to only begin moving after Blinky's out on a path etc. 
+
+```
+setTimeout(function() {
+    blinkyMoves()
+    cells[clyde].classList.remove('clyde')
+    cells[clyde].classList.remove('ghost')
+    clyde -= 1
+    cells[clyde].classList.add('clyde')
+    cells[clyde].classList.add('ghost')
+    setTimeout(function() {
+      const clydeGetsOutInterval = setInterval(() => {
+        cells[clyde].classList.remove('clyde')
+        cells[clyde].classList.remove('ghost')
+        clyde -= width
+        cells[clyde].classList.add('clyde')
+        cells[clyde].classList.add('ghost')
+      }, 200)
+      setTimeout(() => {
+        clearInterval(clydeGetsOutInterval)
+      }, 800)
+    }, 200)
+  }, 6000)
+  setTimeout(function() {
+    clydeMoves()
+  }, 8000)
+```
+
 ## Key Learnings
-<p>This project changed my approach to projects a lot and really helped me put my coding process into perspective. I didn't spend much time in the planning stage as I was eager to start coding. This made me spend a lot of time refactoring my code about issues I could have foreseen in the wireframing stage. 
+<p>It was great to put into practice and consolidate everything I had been learning for the first month of the course. Doing this project also really helped me put my coding process into perspective. I didn't spend much time in the planning stage as I was eager to start coding. This made me spend a lot of time refactoring my code about issues I could have foreseen in the wireframing stage. 
 
 Also, as it was a solo project, and the first project we ever did, I didn't ask for help as much as I should have. I believed I should persevere and fix things myself, which in the end had the opposite effect and got me frustrated and I ended up losing time. These two points really taught me valuable lessons and I shifted my mindset moving forward.
 
-Another key takeaway for me that translated into a bigger lesson was the movement of the ghosts. This turned out to be much more complex than I had initially thought, I ended up breaking things down a lot and taking it step by step which in the end helped me speed up. Seeing this was a real eye opener. It was also great to put into practice and consolidate everything I had been learning for the first month of the course.
+Another key takeaway for me that translated into a bigger lesson was the movement of the ghosts. This turned out to be much more complex than I had initially thought, I ended up breaking things down a lot and taking it step by step which in the end helped me speed up. Seeing this was a real eye opener. 
 </p>
 
 ## Future Features
