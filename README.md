@@ -1,15 +1,15 @@
-# Project-1: Pac-Man 
+# <img src="./assets/pacman.png" alt="clyde" style="width:40px;height:40px;margin-top:5px"/> Project-1: Pac-Man 
 
 #### General Assembly SEI Project-1 | Pac-Man | Vanilla JavaScript, HTML & CSS | 1-week | Solo project
 
 
-Deployed version of my game can be found here: - https://alaraayan.github.io/sei-project-1/ 
+Follow the link to play the game - https://alaraayan.github.io/sei-project-1/ 
 
 
 
 
 ## Overview 
-Tasked with building a grid-based game using Vanilla JavaScript. As a huge fan of the classic arcade game, I chose Pac-Man and tried to stay as true to the original game as possible. The user controls the Pac-Man to collect all the dots while being pursued by ghosts who move around the maze. If caught, Pac-Man will lose one of his three lives; while eating a Power-Up will make him momentarily invincible.
+For my first ever project on General Assembly's Software Engineering Immersive, I was tasked with building a grid-based game using Vanilla JavaScript. As a huge fan of the classic arcade game, I chose Pac-Man and tried to stay as true to the original as possible. The user controls the Pac-Man to collect all the dots while being pursued by ghosts who move around the maze. If caught, Pac-Man will lose one of his three lives; while eating a Power-Up will make him momentarily invincible.
 
 
 ## Brief
@@ -37,17 +37,17 @@ The brief given was to:
 
 ## Process
 
-<p>The first stages included setting up the grid and have the Pac-Man move along the maze. I didn't want to add in the ghosts until I felt comfortable with how Pac-Man was moving accross the board.</p>
+<p>The first stages included setting up the grid and having the Pac-Man move along the maze. I didn't want to add in the ghosts until I felt comfortable with how Pac-Man was moving and eating dots accross the board.</p>
 
 <p>Because of the unique shape of the Pac-Man grid I created arrays which specified various parts such as the tunnels and the den for the ghosts. 
 
-Then I added in the Pac-Man and tested that it could move freely accross the grid, moving through the tunnel and appearing on the other side while not being able to enter the home of the ghosts. 
+Then I added the Pac-Man in and tested that it could move freely accross the grid, moving through the tunnel and appearing on the other side and not being able to enter the home of the ghosts. 
 
 To finish the Pac-Man section of the game I added in the dots Pac-Man would be eating to win the game. 
 
-After all the functionality for Pac-Man was tested, it was time to add the ghosts. I started with a single ghost (my favourite Clyde <img src="./assets/clyde.png" alt="clyde" style="width:15px;height:15px"/>) and have him move around randomly. The biggest challenge I had in the beginning was figuring out the random movement of the ghosts which was not entirely random. 
+After all the functionality for Pac-Man was tested, it was time to add the ghosts. I started with a single ghost (my favourite, Clyde <img src="./assets/clyde.png" alt="clyde" style="width:15px;height:15px"/>) and had him move around randomly. 
 
-When Clyde started moving along his chosen path and randomly creating another one, I added his long awaited meeting with Pac-Man. I had to create a collision functionality for both Pac-Man and Clyde. This was fairly simple with added if statements inside their movement functions.
+When Clyde started moving along his chosen path and randomly creating another one, I started working on his long awaited meeting with Pac-Man. I had to create a collision functionality for both Pac-Man and Clyde. This was fairly simple with added `if` statements inside their movement functions.
 </p>
 
 ###### Pac-Man Runs Into Clyde
@@ -66,9 +66,9 @@ if ((cells[inky].classList.contains('pacman'))) {
 }
 ```
 
-The only task I had remaining before adding the other ghosts, was the Glow Mode <img src="./assets/glow.jpeg" alt="glow mode" style="width:15px;height:15px"/>. I originally had this as a separate function but decided to refactor into the existing movement functionalities for the ghosts and the Pac-Man. 
+The only task I had remaining before adding the other ghosts was the Glow Mode <img src="./assets/glow.jpeg" alt="glow mode" style="width:15px;height:15px"/>. I originally had this as a separate function, but decided to refactor and add it into the existing movement functionalities for the ghosts and the Pac-Man. 
 
-After adding the remaining ghosts, my MVP was finished. I then moved on to adding a starter screen, careographing the ghosts' starting move out of their home and adding the game won / lost functionalities.
+After adding the remaining ghosts, my MVP was finished. I then moved on to adding a starter screen, careographing the ghosts' sequence to get out of their home and adding the game won / lost functionalities.
 
 ## Screenshots
 <p>
@@ -89,7 +89,7 @@ Glow Mode
 </p>
 
 ## Challenges
-<p>My main challenge was not the Pac-Man but the ghosts. The ghosts move randomly but they stay on a path, and only once that path is no longer valid they choose a new random one. I achieved this in the end with generating a random path for the ghost and then checking if the path is valid or not. While the path is not clear for the ghost to move, it keeps creating a random path and checking it. 
+<p>My main challenge was not the Pac-Man but the ghosts. The ghosts move along their path, and only once that path is no longer valid, they choose a new one randomly. I achieved this in the end with generating a random path for the ghost and then checking if the path is valid or not. And while the path is not clear, the ghost keeps generating a new one. 
 
 
 ###### Logic for finding a clear path
@@ -134,9 +134,22 @@ if (isClear) {
 ```
 
 ## Wins
-While getting the ghosts move was both my biggest challenge and my biggest win, I am also proud of my grid. The grid for Pac-Man is a classic and because I was trying to be true to the arcade game as much as possible, getting the grid right was very important to me. In the end I had all the functionalities a regular Pac-Man grid had, with tunnels the Pac-Man can use to quickly move accross the board and not being able to enter the ghosts home. 
+While getting the ghosts move was both my biggest challenge and my biggest win, I am also proud of my grid. The grid for Pac-Man is a classic and because I was trying to be true to the arcade game as much as possible, getting the it right was very important to me. And the way the result is displayed is also something that I had to work around because I was using Vanilla JavaScript. In the end I manipulated CSS to achieve the dynamic pop-up I was looking for. 
 
-Another win was the entire careography of the ghosts leaving their home and staying true to this pattern when they are back in there once they've been eaten by Pac-Man during Glow Mode. Each ghost leaves the home following a specific path and they do so one at a time. Once the second ghost starts the careography the first ghost is set with finding a path to get moving. I achieved this with nesting `setTimeout()`, allowing Clyde to only begin moving after Blinky's out on a path etc. 
+###### The result pop-up is not displayed during the game
+```
+wonButton.style.display = 'none'
+```
+
+###### After the game has finished, the pop-up appears and the game resets
+```
+function gameWon() {
+  wonButton.style.display = 'flex'
+  wonButton.addEventListener('click', gameReset())
+}
+```
+
+Another win was the entire careography of the ghosts leaving their home and staying true to this pattern when they are back in there once they've been eaten by Pac-Man during Glow Mode. Each ghost leaves the home following a specific path and they do so one at a time. Once the second ghost starts the careography the first ghost is set with finding a path to get moving. I achieved this with a nested `setTimeout()`, allowing Clyde to only begin moving after Blinky's out on a path etc. 
 
 ```
 setTimeout(function() {
@@ -169,7 +182,7 @@ setTimeout(function() {
 
 Also, as it was a solo project, and the first project we ever did, I didn't ask for help as much as I should have. I believed I should persevere and fix things myself, which in the end had the opposite effect and got me frustrated and I ended up losing time. These two points really taught me valuable lessons and I shifted my mindset moving forward.
 
-Another key takeaway for me that translated into a bigger lesson was the movement of the ghosts. This turned out to be much more complex than I had initially thought, I ended up breaking things down a lot and taking it step by step which in the end helped me speed up. Seeing this was a real eye opener. 
+Another key takeaway for me that translated into a bigger lesson, was the movement of the ghosts. This turned out to be much more complex than I had initially thought, I ended up breaking things down a lot and taking it step by step which in the end helped me speed up. Seeing this was a real eye opener. 
 </p>
 
 ## Future Features
