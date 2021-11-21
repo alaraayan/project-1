@@ -52,14 +52,14 @@ When Clyde started moving along his chosen path and randomly creating another on
 
 ###### Pac-Man Runs Into Clyde
 
-```
+``` javascript
 if ((cells[pacMan].classList.contains('ghost'))) {
   livesRemaining -= 1
 }
 ```
 
 ###### Clyde Runs Into Pac-Man
-```
+``` javascript
 if ((cells[inky].classList.contains('pacman'))) {
   livesRemaining -= 1
   updateLives(livesRemaining)
@@ -93,7 +93,7 @@ Glow Mode
 
 
 ###### Logic for finding a clear path
-```
+``` javascript
 const ghostsNextMove = [+1, -1, +width, -width]
 let isClear = false
 
@@ -108,7 +108,7 @@ function pathCheck(ghostName, path) {
 ```
 
 ###### Clyde checks if his path is clear to start moving
-```
+``` javascript
 function clydeMoves() {
   let ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
   setInterval(() => {
@@ -122,7 +122,7 @@ function clydeMoves() {
 }
 ```
 ###### After getting started on his path, Clyde still checks his path ahead before each move
-```
+``` javascript
 if (isClear) {
       pathCheck(clyde, ghostRandomPath)
       cells[clyde].classList.remove('clyde')
@@ -137,12 +137,12 @@ if (isClear) {
 While getting the ghosts move was both my biggest challenge and my biggest win, I am also proud of my grid. The grid for Pac-Man is a classic and because I was trying to be true to the arcade game as much as possible, getting the it right was very important to me. And the way the result is displayed is also something that I had to work around because I was using Vanilla JavaScript. In the end I manipulated CSS to achieve the dynamic pop-up I was looking for. 
 
 ###### The result pop-up is not displayed during the game
-```
+``` javascript
 wonButton.style.display = 'none'
 ```
 
 ###### After the game has finished, the pop-up appears and the game resets
-```
+``` javascript
 function gameWon() {
   wonButton.style.display = 'flex'
   wonButton.addEventListener('click', gameReset())
@@ -151,7 +151,7 @@ function gameWon() {
 
 Another win was the entire careography of the ghosts leaving their home and staying true to this pattern when they are back in there once they've been eaten by Pac-Man during Glow Mode. Each ghost leaves the home following a specific path and they do so one at a time. Once the second ghost starts the careography the first ghost is set with finding a path to get moving. I achieved this with a nested `setTimeout()`, allowing Clyde to only begin moving after Blinky's out on a path etc. 
 
-```
+``` javascript
 setTimeout(function() {
     blinkyMoves()
     cells[clyde].classList.remove('clyde')
