@@ -68,7 +68,7 @@ if ((cells[inky].classList.contains('pacman'))) {
 
 The only task I had remaining before adding the other ghosts was the Glow Mode <img src="./assets/glow.jpeg" alt="glow mode" style="width:15px;height:15px"/>. I originally had this as a separate function, but decided to refactor and add it into the existing movement functionalities for the ghosts and the Pac-Man. 
 
-After adding the remaining ghosts, my MVP was finished. I then moved on to adding a starter screen, careographing the ghosts' sequence to get out of their home and adding the game won / lost functionalities.
+After adding the remaining ghosts, my MVP was finished. I then moved on to adding a starter screen, choreographing the ghosts' sequence to get out of their home and adding the game won / lost functionalities.
 
 ## Screenshots
 <p>
@@ -149,7 +149,7 @@ function gameWon() {
 }
 ```
 
-Another win was the entire careography of the ghosts leaving their home and staying true to this pattern when they are back in there once they've been eaten by Pac-Man during Glow Mode. Each ghost leaves the home following a specific path and they do so one at a time. Once the second ghost starts the careography the first ghost is set with finding a path to get moving. I achieved this with a nested `setTimeout()`, allowing Clyde to only begin moving after Blinky's out on a path etc. 
+Another win was the entire choreography of the ghosts leaving their home and staying true to this pattern when they are back in there once they've been eaten by Pac-Man during Glow Mode. Each ghost leaves the home following a specific path and they do so one at a time. Once the second ghost starts the choreography the first ghost is set with finding a path to get moving. I achieved this with a nested `setTimeout()`, allowing Clyde to only begin moving after Blinky's out on a path etc. 
 
 ``` javascript
 setTimeout(function() {
