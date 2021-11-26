@@ -22,7 +22,7 @@ The brief given was to:
 * **Deploy your game online**, where the rest of the world can access it
 * Use **semantic markup** for HTML and CSS (adhere to best practices)
 
-## Techonologies Used
+## Technologies Used
 **Frontend**
 - HTML5
 - CSS3
@@ -37,11 +37,11 @@ The brief given was to:
 
 ## Process
 
-<p>The first stages included setting up the grid and having the Pac-Man move along the maze. I didn't want to add in the ghosts until I felt comfortable with how Pac-Man was moving and eating dots accross the board.</p>
+<p>The first stages included setting up the grid and having the Pac-Man move along the maze. I didn't want to add in the ghosts until I felt comfortable with how Pac-Man was moving and eating dots across the board.</p>
 
 <p>Because of the unique shape of the Pac-Man grid I created arrays which specified various parts such as the tunnels and the den for the ghosts. 
 
-Then I added the Pac-Man in and tested that it could move freely accross the grid, moving through the tunnel and appearing on the other side and not being able to enter the home of the ghosts. 
+Then I added the Pac-Man in and tested that it could move freely across the grid, moving through the tunnel and appearing on the other side and not being able to enter the home of the ghosts. 
 
 To finish the Pac-Man section of the game I added in the dots Pac-Man would be eating to win the game. 
 
