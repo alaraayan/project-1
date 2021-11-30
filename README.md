@@ -14,13 +14,13 @@ For my first ever project on General Assembly's Software Engineering Immersive, 
 
 ## Brief
 The brief given was to:
-* **Render a game in the browser**
-* **Design logic for winning** & **visually display which player won**
-* **Include separate HTML / CSS / JavaScript files**
-* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles
-* Use **Javascript** for **DOM manipulation**
-* **Deploy your game online**, where the rest of the world can access it
-* Use **semantic markup** for HTML and CSS (adhere to best practices)
+* **Render a game in the browser**.
+* **Design logic for winning** & **visually display which player won**.
+* **Include separate HTML / CSS / JavaScript files**.
+* Stick with **KISS (Keep It Simple Stupid)** and **DRY (Don't Repeat Yourself)** principles.
+* Use **Javascript** for **DOM manipulation**.
+* **Deploy your game online**, where the rest of the world can access it.
+* Use **semantic markup** for HTML and CSS (adhere to best practices).
 
 ## Technologies Used
 **Frontend**
@@ -190,10 +190,10 @@ Another key takeaway for me that translated into a bigger lesson, was the moveme
 
 ## Future Features
 
-If we had more time on this project I would add:
-- A (The Office) themed Level-2
-- Different characteristics for the ghosts
-- The original Pac-Man theme song
-- Highest score functionality using Local Storage
+If I had more time on this project I would add:
+- A (The Office) themed Level-2.
+- Different characteristics for the ghosts.
+- The original Pac-Man theme song.
+- Highest score functionality using Local Storage.
 
 
