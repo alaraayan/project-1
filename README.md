@@ -35,6 +35,9 @@ The brief given was to:
 - VScode
 - ESlint
 
+## Planning
+I started the project with planning which features of Pac-Man I was going to add to my game and which would be stretch goals to work on if I had the time. I also drew out a basic page layout and worked on planning how I wanted the grid to look. 
+
 ## Process
 
 <p>The first stages included setting up the grid and having the Pac-Man move along the maze. I didn't want to add in the ghosts until I felt comfortable with how Pac-Man was moving and eating dots across the board.</p>
@@ -92,7 +95,7 @@ Glow Mode
 <p>My main challenge was not the Pac-Man but the ghosts. The ghosts move along their path, and only once that path is no longer valid, they choose a new one randomly. I achieved this in the end with generating a random path for the ghost and then checking if the path is valid or not. And while the path is not clear, the ghost keeps generating a new one. 
 
 
-###### Logic for finding a clear path
+###### Logic for finding a clear path.
 ``` javascript
 const ghostsNextMove = [+1, -1, +width, -width]
 let isClear = false
@@ -107,7 +110,7 @@ function pathCheck(ghostName, path) {
 }
 ```
 
-###### Clyde checks if his path is clear to start moving
+###### Clyde checks if his path is clear to start moving.
 ``` javascript
 function clydeMoves() {
   let ghostRandomPath = ghostsNextMove[Math.floor(Math.random() * ghostsNextMove.length)]
@@ -121,7 +124,7 @@ function clydeMoves() {
   
 }
 ```
-###### After getting started on his path, Clyde still checks his path ahead before each move
+###### After getting started on his path, Clyde still checks his path ahead before each move.
 ``` javascript
 if (isClear) {
       pathCheck(clyde, ghostRandomPath)
@@ -134,14 +137,14 @@ if (isClear) {
 ```
 
 ## Wins
-While getting the ghosts move was both my biggest challenge and my biggest win, I am also proud of my grid. The grid for Pac-Man is a classic and because I was trying to be as true to the arcade game as possible, getting it right was very important to me. And the way the result is displayed is also something that I had to work around because I was using Vanilla JavaScript. In the end I manipulated CSS to achieve the dynamic pop-up I was looking for.
+While getting the ghosts to move was both my biggest challenge and my biggest win, I am also proud of my grid. The grid for Pac-Man is a classic and because I was trying to be as true to the arcade game as possible, getting it right was very important to me. And the way the result is displayed is also something that I had to work around because I was using Vanilla JavaScript. In the end I manipulated CSS to achieve the dynamic pop-up I was looking for.
 
-###### The result pop-up is not displayed during the game
+###### The result pop-up is not displayed during the game.
 ``` javascript
 wonButton.style.display = 'none'
 ```
 
-###### After the game has finished, the pop-up appears and the game resets
+###### After the game has finished, the pop-up appears and the game resets.
 ``` javascript
 function gameWon() {
   wonButton.style.display = 'flex'
